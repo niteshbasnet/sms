@@ -1,6 +1,15 @@
 package mum.waa.sms.model;
 
-import java.io.Serializable;
+import java.sql.Date;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -9,15 +18,29 @@ import org.springframework.format.annotation.DateTimeFormat;
  * @author nitesh
  *
  */
-public class Student implements Serializable {
+@Entity
+@Table(name = "student")
+public class Student {
 
-	private static final long serialVersionUID = -5229223860253827517L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	private long Id;
 	private String firstName;
 	private String lastName;
 	private String gender;
-	private DateTimeFormat dob;
+	private Date dob;
 	private long phoneNumber;
+
+	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
 	private Address address;
+
+	public long getId() {
+		return Id;
+	}
+
+	public void setId(long id) {
+		Id = id;
+	}
 
 	public String getFirstName() {
 		return firstName;
@@ -43,11 +66,11 @@ public class Student implements Serializable {
 		this.gender = gender;
 	}
 
-	public DateTimeFormat getDob() {
+	public Date getDob() {
 		return dob;
 	}
 
-	public void setDob(DateTimeFormat dob) {
+	public void setDob(Date dob) {
 		this.dob = dob;
 	}
 
