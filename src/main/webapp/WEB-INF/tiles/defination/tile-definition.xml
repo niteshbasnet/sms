@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE tiles-definitions PUBLIC "-//Apache Software Foundation//DTD Tiles Configuration 3.0//EN" 
+	"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
+
+<tiles-definitions>
+
+	<definition name="baseLayout" template="/WEB-INF/tiles/template/baseLayout.jsp">
+		<put-attribute name="title" value="Home" />
+		<put-attribute name="heading" value="" />
+		<put-attribute name="tagline" value="" />
+		<put-attribute name="navigation" value="" />
+		<put-attribute name="body" value="" />
+		<put-attribute name="footer" value="/WEB-INF/tiles/template/footer.jsp" />
+	</definition>
+
+	<definition name="login" extends="baseLayout">
+		<put-attribute name="title" value="Login" />
+		<put-attribute name="heading" value="Login" />
+		<put-attribute name="tagline" value="Enter your Credentials" />
+		<put-attribute name="body" value="/WEB-INF/view/login.jsp" />
+	</definition>
+
+	<definition name="dashboard" extends="baseLayout">
+		<put-attribute name="title" value="Dashboard" />
+		<put-attribute name="heading" value="Dashboard" />
+		<put-attribute name="navigation" value="/WEB-INF/tiles/template/navigation.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/dashboard.jsp" />
+	</definition>
+
+	<definition name="addstudentform" extends="baseLayout">
+		<put-attribute name="title" value="Add Student" />
+		<put-attribute name="heading" value="Add Student" />
+		<put-attribute name="navigation" value="/WEB-INF/tiles/template/navigation.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/addstudentform.jsp" />
+	</definition>
+	
+	<definition name="addcourseform" extends="baseLayout">
+		<put-attribute name="title" value="Add Course" />
+		<put-attribute name="heading" value="Add Course" />
+		<put-attribute name="navigation" value="/WEB-INF/tiles/template/navigation.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/addcourseform.jsp" />
+	</definition>
+
+	<definition name="addTMrequirementform" extends="baseLayout">
+		<put-attribute name="title" value="Add TM Requirement" />
+		<put-attribute name="heading" value="Add TM Requirement" />
+		<put-attribute name="navigation" value="/WEB-INF/tiles/template/navigation.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/addTMrequirementform.jsp" />
+	</definition>
+</tiles-definitions>

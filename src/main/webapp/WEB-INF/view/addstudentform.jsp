@@ -7,7 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<h1>This is student form</h1>
 	<div id="global">
 		<h2 style="text-align: center;">${appName }</h2>
 		<form action="addstudentform" method="post">
@@ -44,6 +43,5 @@
 			</fieldset>
 		</form>
 	</div>
-	d
 </body>
 </html>

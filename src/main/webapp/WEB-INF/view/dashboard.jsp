@@ -8,12 +8,6 @@
 </head>
 <body>
 	<h1>This is dashboard</h1>
-	<a href="addstudentform">Add Student</a>
-	<br>
-	<a href="addcourseform">Add Course</a>
-	<br>
-	<a href="addTMrequirementform">Add TM Requirement</a>
-	<br>
-	<a href="editstudent">Edit Student</a>
+
 </body>
 </html>

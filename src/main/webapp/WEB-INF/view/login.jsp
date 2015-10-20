@@ -12,6 +12,7 @@
 <title>Welcome</title>
 </head>
 <body>
+	Language : <a href="?language=en_US">English</a>|<a href="?language=nl_NL">Nepali</a>
 	<form method="post" action="login">
 		<center>
 			<table border="1" width="30%" cellpadding="3">
@@ -22,11 +23,11 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td>User Name</td>
+						<td><spring:message code="userName"/></td>
 						<td><input type="text" name="uname" value="" /></td>
 					</tr>
 					<tr>
-						<td>Password</td>
+						<td><spring:message code="password"/></td>
 						<td><input type="password" name="pass" value="" /></td>
 					</tr>
 					<tr>
@@ -34,7 +35,7 @@
 						<td><input type="reset" value="Reset" /></td>
 					</tr>
 					<tr>
-						<td colspan="2">Yet Not Registered!! <a href="reg.jsp">Register
+						<td colspan="2"><spring:message code="not.registered.msg"/>!! <a href="reg.jsp">Register
 								Here</a></td>
 					</tr>
 				</tbody>
