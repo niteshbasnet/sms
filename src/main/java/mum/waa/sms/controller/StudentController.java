@@ -37,23 +37,41 @@ public class StudentController {
 		return "addstudentform";
 	}
 
+	@RequestMapping(value = { "/addstudentform" }, method = RequestMethod.POST)
+	public String addStudentPost(@ModelAttribute("newStudent") Student student) {
+		studentservice.saveStudent(student);
+		return "addstudentform";
+	}
+
+	@RequestMapping(value = { "/editstudent" }, method = RequestMethod.GET)
+	public String searchStudentGet() {
+		return "editstudent";
+	}
+
+	@RequestMapping(value = "/editstudent", method = RequestMethod.POST)
+	public String searchStudentPost(@RequestParam("search") int searchId, Model model) {
+		Student student = studentservice.getStudentById(searchId);
+		System.out.println(searchId);
+		model.addAttribute("searchedStudent", student);
+		return "updatestudentform";
+	}
+
 	@RequestMapping(value = "/course", method = RequestMethod.GET)
 	public @ResponseBody List<String> getCourseforEntry(@RequestParam("entry") String entry) {
 		System.out.println(entry);
 		List<String> listcourse = courseservice.getCourse();
-		// String course = listcourse.get(0);
 		return listcourse;
 	}
 
-	@RequestMapping(value = { "/addstudentform" }, method = RequestMethod.POST)
-	public String addStudentPost(@Valid @ModelAttribute("newStudent") Student student) {
-		studentservice.saveStudent(student);
-		List<Course> listcourse = student.getCourses();
-		for (Course course : listcourse) {
-			System.out.println(course.getCourseName());
-		}
-
-		return "addstudent";
+	@RequestMapping(value = { "/updatestudentform" }, method = RequestMethod.GET)
+	public String updateStudentGet() {
+		System.out.println("in the get");
+		return "updatestudentform";
 	}
 
+	@RequestMapping(value = "/updatestudentform", method = RequestMethod.POST)
+	public String updateStudentPost(@ModelAttribute("searchedStudent") Student studentupdated, Model model) {
+		studentservice.updateStudent(studentupdated);
+		return "editstudent";
+	}
 }

@@ -10,4 +10,8 @@ public interface StudentService {
 
 	public List<String> getCourseEntry(String entry);
 
+	public Student getStudentById(int id);
+	
+	public void updateStudent(Student student);
+
 }

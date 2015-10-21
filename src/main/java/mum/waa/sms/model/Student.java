@@ -36,6 +36,7 @@ public class Student implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long Id;
+	private int studentId;
 	private String firstName;
 	private String lastName;
 	private String gender;
@@ -136,6 +137,14 @@ public class Student implements Serializable {
 
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+
+	public int getStudentId() {
+		return studentId;
+	}
+
+	public void setStudentId(int studentId) {
+		this.studentId = studentId;
 	}
 
 }
