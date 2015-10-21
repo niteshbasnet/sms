@@ -14,8 +14,8 @@
 
 		<security:access-denied-handler
 			error-page="/error-forbidden" />
-		<security:intercept-url pattern="/add**"
-			access="hasRole('ROLE_ADMIN')" />
+<!--  		<security:intercept-url pattern="/add**"
+			access="hasRole('ROLE_ADMIN')" /> -->
 		<security:intercept-url pattern="/login"
 			access="permitAll" />
 		<security:intercept-url pattern="/dashboard"
