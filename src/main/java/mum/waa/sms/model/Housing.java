@@ -1,7 +1,12 @@
 package mum.waa.sms.model;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@Entity
 public class Housing {
 
+	@Id
 	private int roomNo;
 	private int buildingNo;
 	private boolean kitchenKey;
