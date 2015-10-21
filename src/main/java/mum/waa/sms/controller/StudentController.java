@@ -18,12 +18,6 @@ public class StudentController {
 		return "addstudentform";
 	}
 
-	/*
-	 * @RequestMapping(value = { "/addstudentform" }, method =
-	 * RequestMethod.POST) public String studentForm(Model model) { return
-	 * "addstudent"; }
-	 */
-
 	@RequestMapping(value = { "/addcourseform" }, method = RequestMethod.GET)
 	public String addCourse(Model model) {
 		return "addcourseform";

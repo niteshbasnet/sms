@@ -12,8 +12,18 @@
 <title>Welcome</title>
 </head>
 <body>
-	Language : <a href="?language=en_US">English</a>|<a href="?language=nl_NL">Nepali</a>
-	<form method="post" action="login">
+	Language :
+	<a href="?language=en_US">English</a>|
+	<a href="?language=nl_NL">Nepali</a>
+	<c:if test="${not empty error}">
+		<div class="alert alert-danger">
+			<spring:message
+				code="AbstractUserDetailsAuthenticationProvider.badCredentials" />
+			<br />
+		</div>
+	</c:if>
+	<form method="post"
+		action="<spring:url value="/postLogin"></spring:url>">
 		<center>
 			<table border="1" width="30%" cellpadding="3">
 				<thead>
@@ -23,20 +33,20 @@
 				</thead>
 				<tbody>
 					<tr>
-						<td><spring:message code="userName"/></td>
-						<td><input type="text" name="uname" value="" /></td>
+						<td><spring:message code="userName" /></td>
+						<td><input type="text" name="username" value="" /></td>
 					</tr>
 					<tr>
-						<td><spring:message code="password"/></td>
-						<td><input type="password" name="pass" value="" /></td>
+						<td><spring:message code="password" /></td>
+						<td><input type="password" name="password" value="" /></td>
 					</tr>
 					<tr>
 						<td><input type="submit" value="Login" /></td>
 						<td><input type="reset" value="Reset" /></td>
 					</tr>
 					<tr>
-						<td colspan="2"><spring:message code="not.registered.msg"/>!! <a href="reg.jsp">Register
-								Here</a></td>
+						<td colspan="2"><spring:message code="not.registered.msg" />!!
+							<a href="reg.jsp">Register Here</a></td>
 					</tr>
 				</tbody>
 			</table>

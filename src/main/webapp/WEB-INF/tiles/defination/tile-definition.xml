@@ -3,7 +3,6 @@
 	"http://tiles.apache.org/dtds/tiles-config_3_0.dtd">
 
 <tiles-definitions>
-
 	<definition name="baseLayout" template="/WEB-INF/tiles/template/baseLayout.jsp">
 		<put-attribute name="title" value="Home" />
 		<put-attribute name="heading" value="" />
@@ -47,4 +46,30 @@
 		<put-attribute name="navigation" value="/WEB-INF/tiles/template/navigation.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/addTMrequirementform.jsp" />
 	</definition>
+	
+	<definition name="user-profile" extends="baseLayout">
+		<put-attribute name="title" value="Add TM Requirement" />
+		<put-attribute name="heading" value="Add TM Requirement" />
+		<put-attribute name="navigation" value="/WEB-INF/tiles/template/navigation.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/user-profile.jsp" />
+	</definition>
+
+	<definition name="page-not-found" extends="baseLayout">
+		<put-attribute name="title" value="Forbidden" />
+		<put-attribute name="heading" value="Forbidden" />
+		<put-attribute name="body" value="/WEB-INF/view/page-not-found.jsp" />
+	</definition>
+
+	<definition name="error" extends="baseLayout">
+		<put-attribute name="title" value="Forbidden" />
+		<put-attribute name="heading" value="Forbidden" />
+		<put-attribute name="body" value="/WEB-INF/view/error.jsp" />
+	</definition>
+	
+	<definition name="error-forbidden" extends="baseLayout">
+		<put-attribute name="title" value="Forbidden" />
+		<put-attribute name="heading" value="Forbidden" />
+		<put-attribute name="body" value="/WEB-INF/view/error-forbidden.jsp" />
+	</definition>
+	
 </tiles-definitions>
