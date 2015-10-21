@@ -21,7 +21,7 @@ public class CourseServiceImpl implements CourseService {
 		List<String> liststring = new ArrayList<String>();
 		List<Course> listcourse = (List<Course>) courserepository.findAll();
 		for (Course course : listcourse) {
-			liststring.add(course.getCourseName());
+			liststring.add(course.getName());
 		}
 		return liststring;
 	}

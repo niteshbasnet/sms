@@ -9,7 +9,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToMany;
-import javax.persistence.Transient;
 
 /**
  * @author Regan
@@ -23,16 +22,17 @@ public class Course implements Serializable {
 	 */
 	private static final long serialVersionUID = 707620149262582350L;
 
-	private String courseName;
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
-	@Transient
-	private String minimumGradeReq;
 
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "courses")
 	private List<Student> students;
+	private String name;
+	private String minimumGrade;
+	private String professor;
+	private String courseId;
+	private Entry entry;
 
 	public List<Student> getStudents() {
 		return students;
@@ -50,20 +50,52 @@ public class Course implements Serializable {
 		this.id = courseID;
 	}
 
-	public String getCourseName() {
-		return courseName;
+	public String getName() {
+		return name;
 	}
 
-	public void setCourseName(String courseName) {
-		this.courseName = courseName;
+	public void setName(String name) {
+		this.name = name;
 	}
 
-	public String getMinimumGradeReq() {
-		return minimumGradeReq;
+	public String getProfessor() {
+		return professor;
 	}
 
-	public void setMinimumGradeReq(String minimumGradeReq) {
-		this.minimumGradeReq = minimumGradeReq;
+	public void setProfessor(String professor) {
+		this.professor = professor;
+	}
+
+	public Entry getEntry() {
+		return entry;
+	}
+
+	public void setEntry(Entry entry) {
+		this.entry = entry;
+	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getMinimumGrade() {
+		return minimumGrade;
+	}
+
+	public void setMinimumGrade(String minimumGrade) {
+		this.minimumGrade = minimumGrade;
+	}
+
+	public String getCourseId() {
+		return courseId;
+	}
+
+	public void setCourseId(String courseId) {
+		this.courseId = courseId;
 	}
 
 }

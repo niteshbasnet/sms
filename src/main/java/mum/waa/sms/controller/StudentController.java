@@ -1,13 +1,11 @@
 package mum.waa.sms.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -50,7 +48,7 @@ public class StudentController {
 		studentservice.saveStudent(student);
 		List<Course> listcourse = student.getCourses();
 		for (Course course : listcourse) {
-			System.out.println(course.getCourseName());
+			System.out.println(course.getName());
 		}
 
 		return "addstudent";

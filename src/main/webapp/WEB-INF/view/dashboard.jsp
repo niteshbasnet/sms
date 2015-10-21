@@ -9,11 +9,10 @@
 </head>
 <body>
 	<security:authorize access="isAuthenticated()">
-		Welcome <security:authentication property="username"/>
+		Welcome <security:authentication property="username" />
 	</security:authorize>
 	<a href="<spring:url  value="/doLogout" />"
 		class="btn btn-danger btn-mini pull-right">Logout</a>
 	<h1>This is dashboard</h1>
-
 </body>
 </html>
