@@ -34,10 +34,11 @@ public class Student implements Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 5400162374980514311L;	
+	private static final long serialVersionUID = 5400162374980514311L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long Id;
+	private int studentId;
 	private String firstName;
 	private String lastName;
 	private String gender;
@@ -70,6 +71,7 @@ public class Student implements Serializable {
 	public String getEntry() {
 		return entry;
 	}
+
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@Valid
 	private Address address;
@@ -78,7 +80,6 @@ public class Student implements Serializable {
 	@JoinTable(name = "Student_Course", joinColumns = {
 			@JoinColumn(name = "Student_ID", nullable = false, updatable = false) }, inverseJoinColumns = {
 					@JoinColumn(name = "Course_ID", nullable = false, updatable = false) })
-
 
 	public void setEntry(String entry) {
 		this.entry = entry;
@@ -151,6 +152,14 @@ public class Student implements Serializable {
 
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+
+	public int getStudentId() {
+		return studentId;
+	}
+
+	public void setStudentId(int studentId) {
+		this.studentId = studentId;
 	}
 
 }

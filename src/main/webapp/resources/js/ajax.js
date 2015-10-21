@@ -5,7 +5,7 @@ $(document)
 							.change(
 									function() {
 										var dropdownValue = $('#entry').val();
-										// alert(dropdownValue);
+										alert(dropdownValue);
 										$
 												.ajax({
 													url : '/StudentMGMT/course',
