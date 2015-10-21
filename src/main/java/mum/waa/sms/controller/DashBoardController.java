@@ -1,9 +1,14 @@
 package mum.waa.sms.controller;
 
+import javax.validation.Valid;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+
+import mum.waa.sms.model.Student;
 
 /**
  * @author Regan
@@ -11,17 +16,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 public class DashBoardController {
-
-	@RequestMapping(value = { "/addstudentform" }, method = RequestMethod.GET)
-	public String addStudent(Model model) {
-		return "addstudentform";
-	}
-
-	/*
-	 * @RequestMapping(value = { "/addstudentform" }, method =
-	 * RequestMethod.POST) public String studentForm(Model model) { return
-	 * "addstudent"; }
-	 */
 
 	@RequestMapping(value = { "/addcourseform" }, method = RequestMethod.GET)
 	public String addCourse(Model model) {
