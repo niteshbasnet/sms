@@ -10,13 +10,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form:form commandName="course" action="/addCourse" method="post">
+	<form:form commandName="course" action="addCourse" method="post">
 		<fieldset>
 			<legend>Add Course Form</legend>
-			<%-- <p>
-				<spring:message code="course.Courseid"></spring:message>
-				<form:select id="courseId" path="courseId" items="${studentId}" />
-			</p> --%>
+			<p>
+				<spring:message code="course.Entry"></spring:message>
+				<form:select id="booklist" path="entry" items="${entry}" />
+			</p>
 			<p>
 				<spring:message code="course.CourseId"></spring:message>
 				<form:input path="courseId" />

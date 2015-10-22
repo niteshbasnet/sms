@@ -31,7 +31,7 @@
 	</script>
 	<div id="global">
 		<h2 style="text-align: center;">${appName }</h2>
-		<form:form commandName="tm" action="tmInfo" method="post">
+		<form:form commandName="tm" action="editTmInfo" method="post">
 			<fieldset>
 				<legend>Add TM Requirement Form</legend>
 				<spring:message code="addTMrequirement.StudentId"></spring:message>

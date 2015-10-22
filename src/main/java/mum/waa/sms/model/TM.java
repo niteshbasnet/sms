@@ -18,8 +18,9 @@ public class TM {
 
 	}
 
-	public TM(Integer tMRequirement, Integer dCRequirement, Integer tMLeft, Integer dCLeft) {
+	public TM(Integer studentId, Integer tMRequirement, Integer dCRequirement, Integer tMLeft, Integer dCLeft) {
 		super();
+		this.studentId = studentId;
 		this.tMRequirement = tMRequirement;
 		this.dCRequirement = dCRequirement;
 		this.tMLeft = tMLeft;
@@ -56,6 +57,14 @@ public class TM {
 
 	public void setdCLeft(Integer dCLeft) {
 		this.dCLeft = dCLeft;
+	}
+
+	public Integer getStudentId() {
+		return studentId;
+	}
+
+	public void setStudentId(Integer studentId) {
+		this.studentId = studentId;
 	}
 
 }

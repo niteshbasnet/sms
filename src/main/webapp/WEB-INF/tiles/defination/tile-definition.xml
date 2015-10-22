@@ -43,12 +43,16 @@
 		<put-attribute name="body" value="/WEB-INF/view/addcourseform.jsp" />
 	</definition>
 
-	<definition name="tmInfo" extends="baseLayout">
+	<!-- <definition name="tmInfo" extends="baseLayout"> <put-attribute name="title" 
+		value="Add TM Requirement" /> <put-attribute name="heading" value="Add TM 
+		Requirement" /> <put-attribute name="navigation" value="/WEB-INF/tiles/template/navigation.jsp" 
+		/> <put-attribute name="body" value="/WEB-INF/view/tmInfo.jsp" /> </definition> -->
+	<definition name="editTmInfo" extends="baseLayout">
 		<put-attribute name="title" value="Add TM Requirement" />
 		<put-attribute name="heading" value="Add TM Requirement" />
 		<put-attribute name="navigation"
 			value="/WEB-INF/tiles/template/navigation.jsp" />
-		<put-attribute name="body" value="/WEB-INF/view/tmInfo.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/editTmInfo.jsp" />
 
 	</definition>
 
