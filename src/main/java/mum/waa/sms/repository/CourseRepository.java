@@ -6,4 +6,6 @@ import mum.waa.sms.model.Course;
 
 public interface CourseRepository extends CrudRepository<Course, Integer> {
 
+	Course findByCourseName(String courseName);
+
 }

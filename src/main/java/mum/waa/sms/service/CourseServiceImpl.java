@@ -26,4 +26,9 @@ public class CourseServiceImpl implements CourseService {
 		return liststring;
 	}
 
+	@Override
+	public Course getCourseByName(String courseName) {
+		return courserepository.findByCourseName(courseName);
+	}
+
 }

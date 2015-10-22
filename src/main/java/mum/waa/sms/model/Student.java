@@ -20,8 +20,9 @@ import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
-import javax.xml.bind.annotation.XmlTransient;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -36,22 +37,23 @@ import com.mysql.jdbc.Blob;
 @Entity
 @Table(name = "student")
 public class Student implements Serializable {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 5400162374980514311L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long Id;
-	
-	@NotNull(message="Student ID shouldn't be null")
+
+
 	private Integer studentId;
 	
-	@Size(min=2,max=20)
+
 	private String firstName;
+	
+
 	private String lastName;
+	
+
 	private String gender;
+
 	private String email;
 	private String studentImagePath;
 	@Transient
@@ -68,7 +70,10 @@ public class Student implements Serializable {
 	@Past
 	@DateTimeFormat(pattern = "MM/dd/yyyy")
 	private Date dob;
+
+//	@Size(min = 10, max = 10, message = "{Size.addStudent.phoneNumber.validation}")
 	private long phoneNumber;
+
 	private String entry;
 
 	public String getEntry() {
