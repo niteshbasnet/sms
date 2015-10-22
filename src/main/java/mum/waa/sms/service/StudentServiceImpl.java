@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -17,6 +18,7 @@ public class StudentServiceImpl implements StudentService {
 	@Autowired
 	StudentRepository studentrepository;
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void saveStudent(Student student) {
 		studentrepository.save(student);
 

@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -13,6 +14,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.Transient;
@@ -52,11 +54,21 @@ public class Student implements Serializable {
 
 	@Email
 	private String email;
+	@Embedded
+	private TM tm;
 	
 	
 	private String studentImagePath;
 	@Transient
 	private MultipartFile studentImage;
+
+	public TM getTm() {
+		return tm;
+	}
+
+	public void setTm(TM tm) {
+		this.tm = tm;
+	}
 
 	public String getEmail() {
 		return email;
@@ -79,16 +91,19 @@ public class Student implements Serializable {
 		return entry;
 	}
 
-	public void setEntry(String entry) {
-		this.entry = entry;
-	}
-
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@Valid
 	private Address address;
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "Student_Course", joinColumns = { @JoinColumn(name = "Student_ID", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "Course_ID", nullable = false, updatable = false) })
+	public void setEntry(String entry) {
+		this.entry = entry;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+	@Valid
+	@JoinColumn
 	private List<Course> courses;
 
 	public List<Course> getCourses() {

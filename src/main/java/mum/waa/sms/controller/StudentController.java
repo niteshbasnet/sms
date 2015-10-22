@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
@@ -45,6 +46,7 @@ public class StudentController {
 	@Autowired
 	private CourseService courseservice;
 
+	@PreAuthorize("hasRole('ROLE_ADMIN')") 
 	@RequestMapping(value = { "/addstudentform" }, method = RequestMethod.GET)
 	public String addStudentGet(@ModelAttribute("newStudent") Student student) {
 		return "addstudentform";
