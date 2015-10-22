@@ -22,12 +22,8 @@ import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.Email;
-import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.mysql.jdbc.Blob;
 
 /**
  * 
@@ -42,19 +38,22 @@ public class Student implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long Id;
 
-
+	@NotNull
 	private Integer studentId;
 	
-
+	@Size(min=2,max=20,message="first name not found")
 	private String firstName;
 	
-
+	@Size(min=2,max=20,message="first name not found")
 	private String lastName;
 	
-
+	@Size(min=2,max=20,message="first name not found")
 	private String gender;
 
+	@Email
 	private String email;
+	
+	
 	private String studentImagePath;
 	@Transient
 	private MultipartFile studentImage;

@@ -7,5 +7,8 @@
 <title>Forbidden</title>
 </head>
 <body>Forbidden!!
+<p><button type=button onclick=window.location.href="<spring:url value="/dashboard" />">Home</button></p>
+<img src="<spring:url value="/resource/images/error.png" />" alt="Forbidden page!!!" />
+
 </body>
 </html>

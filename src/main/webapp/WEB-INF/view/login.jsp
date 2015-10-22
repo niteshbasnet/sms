@@ -12,9 +12,6 @@
 <title>Welcome</title>
 </head>
 <body>
-	Language :
-	<a href="?language=en_US">English</a>|
-	<a href="?language=nl_NL">Nepali</a>
 	<c:if test="${not empty error}">
 		<div class="alert alert-danger">
 			<spring:message

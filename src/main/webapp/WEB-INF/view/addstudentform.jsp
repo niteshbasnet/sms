@@ -30,8 +30,6 @@
 				<fieldset>
 					<legend>Add a Student Information</legend>
 
-					<form:errors path="*" element="div" />
-
 					<form:input path="studentImage" type="file" />
 
 					<div>

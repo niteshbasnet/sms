@@ -51,12 +51,26 @@ public class StudentController {
 	}
 
 	@RequestMapping(value = { "/addstudentform" }, method = RequestMethod.POST)
-	public String addStudentPost(@Valid @ModelAttribute("newStudent") Student student,
-			RedirectAttributes redirectAttributes, BindingResult result) {
+	public String addStudentPost(@Valid @ModelAttribute("newStudent") Student student, BindingResult result,
+			RedirectAttributes redirectAttributes ) {
 		if (result.hasErrors()) {
 			System.out.println("in the result");
 			return "addstudentform";
 		} else {
+			MultipartFile studentImage = student.getStudentImage();
+			String rootDirectory = context.getRealPath("/");
+			if (studentImage != null && !studentImage.isEmpty()) {
+				try {
+					System.out.println("addimage try");
+					studentImage.transferTo(new File(rootDirectory
+							+ "\\resources\\images\\student_image\\" + student.getStudentId()
+							+ ".png"));
+					student.setStudentImagePath(rootDirectory+ "\\resources\\images\\student_image\\" + student.getStudentId()+ ".png");
+				} catch (Exception e) {
+					throw new RuntimeException("Student Image saving failed", e);
+				}
+			}
+			
 			List<String> allCourses = getCourseforEntry(student.getEntry());
 			int i = 0;
 			List<Course> assignedCourses = new ArrayList<Course>();
@@ -70,32 +84,12 @@ public class StudentController {
 					assignedCourses.add(course);
 				}
 			}
+			
 			student.setCourses(assignedCourses);
 			studentservice.saveStudent(student);
 			redirectAttributes.addFlashAttribute(student);
 			return "redirect:results";
 		}
-
-	public String addStudentPost(@Valid @ModelAttribute("newStudent") Student student, BindingResult result) {
-		if (result.hasErrors()) {
-			return "addstudentform";
-		}
-		
-		MultipartFile studentImage = student.getStudentImage();
-		String rootDirectory = context.getRealPath("/");
-		if (studentImage != null && !studentImage.isEmpty()) {
-			try {
-				System.out.println("addimage try");
-				studentImage.transferTo(new File(rootDirectory
-						+ "\\resources\\images\\student_image\\" + student.getStudentId()
-						+ ".png"));
-				student.setStudentImagePath(rootDirectory+ "\\resources\\images\\student_image\\" + student.getStudentId()+ ".png");
-			} catch (Exception e) {
-				throw new RuntimeException("Student Image saving failed", e);
-			}
-		}
-		studentservice.saveStudent(student);
-		return "addstudentform";
 	}
 
 	@RequestMapping(value = "/results", method = RequestMethod.GET)

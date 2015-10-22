@@ -14,12 +14,12 @@
   <body>
 
 <center>
-
-<img src="<spring:url value="/resources/images/error.png"  htmlEscape="true" />" alt="Page not found  JSP!!!"  />
+<p><button type=button onclick=window.location.href="<spring:url value="/dashboard" />">Home</button></p>
+<img src="<spring:url value="/resource/images/error.png"  htmlEscape="true" />" alt="Page not found  JSP!!!"  />
 
 <H2>${requestScope['javax.servlet.error.message']}</H2>
  
- <p><button type=button onclick=window.location.href="<spring:url value="/login" />">Home</button></p>
+ 
 
 </center> 
   </body>
