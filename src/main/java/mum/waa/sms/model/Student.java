@@ -40,7 +40,6 @@ public class Student implements Serializable {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long Id;
 
-	@NotNull
 	private Integer studentId;
 	
 	@Size(min=2,max=20,message="first name not found")
@@ -85,9 +84,9 @@ public class Student implements Serializable {
 //	@Size(min = 10, max = 10, message = "{Size.addStudent.phoneNumber.validation}")
 	private long phoneNumber;
 
-	private String entry;
+	private Entry entry;
 
-	public String getEntry() {
+	public Entry getEntry() {
 		return entry;
 	}
 
@@ -97,7 +96,7 @@ public class Student implements Serializable {
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "Student_Course", joinColumns = { @JoinColumn(name = "Student_ID", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "Course_ID", nullable = false, updatable = false) })
-	public void setEntry(String entry) {
+	public void setEntry(Entry entry) {
 		this.entry = entry;
 	}
 

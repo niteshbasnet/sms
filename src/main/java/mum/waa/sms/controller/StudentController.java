@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.ServletContext;
@@ -26,6 +27,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.multipart.MultipartFile;
 
 import mum.waa.sms.model.Course;
+import mum.waa.sms.model.Entry;
 import mum.waa.sms.model.Student;
 import mum.waa.sms.service.CourseService;
 import mum.waa.sms.service.StudentService;
@@ -39,22 +41,23 @@ public class StudentController {
 
 	@Autowired
 	private ServletContext context;
-	
+
 	@Autowired
 	private StudentService studentservice;
 
 	@Autowired
 	private CourseService courseservice;
 
-	@PreAuthorize("hasRole('ROLE_ADMIN')") 
+	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@RequestMapping(value = { "/addstudentform" }, method = RequestMethod.GET)
 	public String addStudentGet(@ModelAttribute("newStudent") Student student) {
 		return "addstudentform";
 	}
 
 	@RequestMapping(value = { "/addstudentform" }, method = RequestMethod.POST)
-	public String addStudentPost(@Valid @ModelAttribute("newStudent") Student student, BindingResult result,
-			RedirectAttributes redirectAttributes ) {
+	public String addStudentPost(
+			@Valid @ModelAttribute("newStudent") Student student,
+			BindingResult result, RedirectAttributes redirectAttributes) {
 		if (result.hasErrors()) {
 			System.out.println("in the result");
 			return "addstudentform";
@@ -65,14 +68,16 @@ public class StudentController {
 				try {
 					System.out.println("addimage try");
 					studentImage.transferTo(new File(rootDirectory
-							+ "\\resources\\images\\student_image\\" + student.getStudentId()
-							+ ".png"));
-					student.setStudentImagePath(rootDirectory+ "\\resources\\images\\student_image\\" + student.getStudentId()+ ".png");
+							+ "\\resources\\images\\student_image\\"
+							+ student.getStudentId() + ".png"));
+					student.setStudentImagePath(rootDirectory
+							+ "\\resources\\images\\student_image\\"
+							+ student.getStudentId() + ".png");
 				} catch (Exception e) {
 					throw new RuntimeException("Student Image saving failed", e);
 				}
 			}
-			
+
 			List<String> allCourses = getCourseforEntry(student.getEntry());
 			int i = 0;
 			List<Course> assignedCourses = new ArrayList<Course>();
@@ -81,12 +86,14 @@ public class StudentController {
 					break;
 				}
 				String courseName = allCourses.get(i);
-				if (student.getCourses().get(i) != null && "on".equals(student.getCourses().get(i).getCourseName())) {
-					Course course = courseservice.getCourseByName(courseName);
-					assignedCourses.add(course);
+				if (student.getCourses().get(i) != null
+						&& "on".equals(student.getCourses().get(i).getName())) {
+					List<Course> course = courseservice
+							.getCoursesByEntry(student.getEntry());
+					assignedCourses.addAll(course);
 				}
 			}
-			
+
 			student.setCourses(assignedCourses);
 			studentservice.saveStudent(student);
 			redirectAttributes.addFlashAttribute(student);
@@ -110,7 +117,8 @@ public class StudentController {
 	}
 
 	@RequestMapping(value = "/editstudent", method = RequestMethod.POST)
-	public String searchStudentPost(@RequestParam("search") int searchId, Model model) {
+	public String searchStudentPost(@RequestParam("search") int searchId,
+			Model model) {
 		Student student = studentservice.getStudentById(searchId);
 		System.out.println(searchId);
 		model.addAttribute("searchedStudent", student);
@@ -118,10 +126,17 @@ public class StudentController {
 	}
 
 	@RequestMapping(value = "/course", method = RequestMethod.GET)
-	public @ResponseBody List<String> getCourseforEntry(@RequestParam("entry") String entry) {
+	public @ResponseBody List<String> getCourseforEntry(
+			@RequestParam("entry") Entry entry) {
 		System.out.println(entry);
-		List<String> listcourse = courseservice.getCourse();
-		return listcourse;
+		List<Course> listcourse = courseservice.getCoursesByEntry(entry);
+		List<String> listCourseString = new ArrayList<String>();
+		for (int i = 0; i < listcourse.size(); i++) {
+			listCourseString.add(listcourse.get(i).getName());
+		}
+		// List<String> listCourseString =
+		// listcourse.stream().map(c->c.getName()).collect(Collectors.toList());
+		return listCourseString;
 	}
 
 	@RequestMapping(value = { "/updatestudentform" }, method = RequestMethod.GET)
@@ -131,7 +146,9 @@ public class StudentController {
 	}
 
 	@RequestMapping(value = "/updatestudentform", method = RequestMethod.POST)
-	public String updateStudentPost(@ModelAttribute("searchedStudent") Student studentupdated, Model model) {
+	public String updateStudentPost(
+			@ModelAttribute("searchedStudent") Student studentupdated,
+			Model model) {
 		studentservice.updateStudent(studentupdated);
 		return "editstudent";
 	}

@@ -1,6 +1,7 @@
 package mum.waa.sms.model;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
@@ -27,7 +28,7 @@ public class Course implements Serializable {
 	private long id;
 
 	@ManyToMany(fetch = FetchType.LAZY, mappedBy = "courses")
-	private List<Student> students;
+	private List<Student> students = new ArrayList<Student>();
 	private String name;
 	private String minimumGrade;
 	private String professor;
