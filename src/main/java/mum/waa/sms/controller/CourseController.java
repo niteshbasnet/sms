@@ -1,5 +1,6 @@
 package mum.waa.sms.controller;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
@@ -29,15 +30,19 @@ public class CourseController {
 	}
 
 	@RequestMapping(value = { "/addCourse" }, method = RequestMethod.POST)
-	public String addCourse(@ModelAttribute("course") Course course, RedirectAttributes attribute) {
+	public String addCourse(@ModelAttribute("course") Course course,
+			RedirectAttributes attribute) {
 		courseService.saveCourse(course);
 		attribute.addFlashAttribute(course);
 		return "redirect:/courseInfo";
 	}
 
 	@RequestMapping(value = { "/courseInfo" }, method = RequestMethod.GET)
-	public String addCourseSuccess(Model model) {
+	public String addCourseSuccess(Model model) throws IOException {
 		Course course = (Course) ((ModelMap) model).get("course");
+		if (course == null) {
+			throw new IOException("The course is Obsolete, Try Again!");
+		}
 		return "courseInfo";
 	}
 

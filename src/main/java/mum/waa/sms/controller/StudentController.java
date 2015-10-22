@@ -3,7 +3,10 @@ package mum.waa.sms.controller;
 import java.io.IOException;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.stream.Collectors;
 
 import javax.servlet.http.HttpServletRequest;
@@ -48,7 +51,6 @@ public class StudentController {
 	@Autowired
 	private CourseService courseservice;
 
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	@RequestMapping(value = { "/addstudentform" }, method = RequestMethod.GET)
 	public String addStudentGet(@ModelAttribute("newStudent") Student student) {
 		return "addstudentform";
@@ -78,22 +80,24 @@ public class StudentController {
 				}
 			}
 
-			List<String> allCourses = getCourseforEntry(student.getEntry());
+			// List<String> allCourses = getCourseforEntry(student.getEntry());
+			List<Course> allCourseObj = courseservice.getCoursesByEntry(student
+					.getEntry());
 			int i = 0;
 			List<Course> assignedCourses = new ArrayList<Course>();
-			for (i = 0; i < allCourses.size(); i++) {
+			for (i = 0; i < allCourseObj.size(); i++) {
 				if (i >= student.getCourses().size()) {
 					break;
 				}
-				String courseName = allCourses.get(i);
+				// String courseName = allCourses.get(i);
 				if (student.getCourses().get(i) != null
 						&& "on".equals(student.getCourses().get(i).getName())) {
-					List<Course> course = courseservice
-							.getCoursesByEntry(student.getEntry());
-					assignedCourses.addAll(course);
+					// List<Course> course = courseservice
+					// .getCoursesByEntry(student.getEntry());
+
+					assignedCourses.add(allCourseObj.get(i));
 				}
 			}
-
 			student.setCourses(assignedCourses);
 			studentservice.saveStudent(student);
 			redirectAttributes.addFlashAttribute(student);
@@ -127,12 +131,15 @@ public class StudentController {
 
 	@RequestMapping(value = "/course", method = RequestMethod.GET)
 	public @ResponseBody List<String> getCourseforEntry(
-			@RequestParam("entry") Entry entry) {
-		System.out.println(entry);
-		List<Course> listcourse = courseservice.getCoursesByEntry(entry);
+			@RequestParam("entry") String entry) {
+		System.out.println("dfggfg:::::" + entry);
+
+		Entry entryEnum = Entry.valueOf(entry.toUpperCase());
+		List<Course> listcourse = courseservice.getCoursesByEntry(entryEnum);
 		List<String> listCourseString = new ArrayList<String>();
 		for (int i = 0; i < listcourse.size(); i++) {
 			listCourseString.add(listcourse.get(i).getName());
+			System.out.println(listcourse.get(i).getName());
 		}
 		// List<String> listCourseString =
 		// listcourse.stream().map(c->c.getName()).collect(Collectors.toList());
@@ -151,5 +158,11 @@ public class StudentController {
 			Model model) {
 		studentservice.updateStudent(studentupdated);
 		return "editstudent";
+	}
+
+	@ModelAttribute("entry")
+	public Set<Entry> getStudentId() {
+		Set<Entry> entry = new HashSet<Entry>(Arrays.asList(Entry.values()));
+		return entry;
 	}
 }

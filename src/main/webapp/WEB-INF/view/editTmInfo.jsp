@@ -20,8 +20,10 @@
 
 			});
 			function populateTMForm(studentId) {
-				$.get("/StudentMGMT/getStudent/" + studentId, function(data) {					
+				$.get("/StudentMGMT/getStudent/" + studentId, function(data) {
+					data = JSON.stringify(data);
 					$("#tMRequirement").val(data.tMRequirement);
+					alert($("#dCRequirement").val(data.dCRequirement));
 					$("#dCRequirement").val(data.dCRequirement);
 					$("#tMLeft").val(data.tMLeft);
 					$("#dCLeft").val(data.dCLeft);

@@ -22,10 +22,11 @@
 </head>
 <body>
 	<div id="global">
-  		<p>
-  		     <form:errors path="*" /> 
-        </p>	
-		<form:form modelAttribute="newStudent"  action="addstudentform"  enctype="multipart/form-data" method="POST">
+		<p>
+			<form:errors path="*" />
+		</p>
+		<form:form modelAttribute="newStudent" action="addstudentform"
+			enctype="multipart/form-data" method="POST">
 			<div id="student">
 				<fieldset>
 					<legend>Add a Student Information</legend>
@@ -91,11 +92,15 @@
 					<div>
 						<label for="entry">Entry: </label>
 						<div>
-							<form:select id="entry" path="entry">
+							<%-- <form:select id="entry" path="entry">
 								<form:option value="NONE" label="--- Select ---" />
 								<form:option value="May" label="May" />
 								<form:option value="Aug" label="Aug" />
-							</form:select>
+							</form:select> --%>
+							<p>
+								<spring:message code="course.Entry"></spring:message>
+								<form:select id="entry" path="entry" items="${entry}" />
+							</p>
 							<%-- <form:select id="entry" path="entry">
 						<form: option value="May 2015" label="May 2015"/>
 						<form: option value="August 2015" label="August 2015"/>
@@ -122,7 +127,6 @@
 				<fieldset>
 					<legend>Add Address</legend>
 
-					<form:errors path="*" element="div" />
 					<div>
 						<label>City: </label>
 						<div>

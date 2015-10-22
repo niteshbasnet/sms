@@ -35,6 +35,7 @@ public class Course implements Serializable {
 	private String courseId;
 	private Entry entry;
 
+	@ManyToMany(fetch=FetchType.LAZY, mappedBy="courses")
 	public List<Student> getStudents() {
 		return students;
 	}

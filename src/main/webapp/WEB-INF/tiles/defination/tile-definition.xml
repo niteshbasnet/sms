@@ -111,4 +111,11 @@
 			value="/WEB-INF/tiles/template/navigation.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/showMessage.jsp" />
 	</definition>
+	<definition name="courseInfo" extends="baseLayout">
+		<put-attribute name="title" value="Show Message" />
+		<put-attribute name="heading" value="Show Message" />
+		<put-attribute name="navigation"
+			value="/WEB-INF/tiles/template/navigation.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/courseInfo.jsp" />
+	</definition>	
 </tiles-definitions>

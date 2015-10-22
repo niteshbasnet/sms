@@ -18,7 +18,7 @@ public class StudentServiceImpl implements StudentService {
 	@Autowired
 	StudentRepository studentrepository;
 
-	@PreAuthorize("hasRole('ROLE_ADMIN')")
+//	@PreAuthorize("hasRole('ROLE_ADMIN')")
 	public void saveStudent(Student student) {
 		studentrepository.save(student);
 

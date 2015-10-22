@@ -15,14 +15,16 @@ public class TM {
 	private Integer dCLeft;
 
 	public TM() {
-
+		this.setdCRequirement(4);
+		this.settMRequirement(4);
 	}
 
-	public TM(Integer studentId, Integer tMRequirement, Integer dCRequirement, Integer tMLeft, Integer dCLeft) {
+	public TM(Integer studentId, Integer tMRequirement, Integer dCRequirement,
+			Integer tMLeft, Integer dCLeft) {
 		super();
 		this.studentId = studentId;
-		this.tMRequirement = tMRequirement;
-		this.dCRequirement = dCRequirement;
+		this.tMRequirement = 4;
+		this.dCRequirement = 4;
 		this.tMLeft = tMLeft;
 		this.dCLeft = dCLeft;
 	}

@@ -5,7 +5,6 @@ $(document)
 							.change(
 									function() {
 										var dropdownValue = $('#entry').val();
-										//alert(dropdownValue);
 										$
 												.ajax({
 													url : '/StudentMGMT/course',
@@ -15,8 +14,8 @@ $(document)
 															+ dropdownValue,
 													success : function(
 															responseList) {
-														//alert("this is object");
 														var $div = $('#courseSection');
+														$div.html("");
 														// $div.append("Course");
 														$
 																.each(

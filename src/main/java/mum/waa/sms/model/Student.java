@@ -41,23 +41,22 @@ public class Student implements Serializable {
 	private long Id;
 
 	private Integer studentId;
-	
-	@Size(min=2,max=20,message="first name not found")
+
+	@Size(min = 2, max = 20, message = "first name not found")
 	private String firstName;
-	
-	@Size(min=2,max=20,message="first name not found")
+
+	@Size(min = 2, max = 20, message = "first name not found")
 	private String lastName;
-	
-	@Size(min=2,max=20,message="first name not found")
+
 	private String gender;
 
 	@Email
 	private String email;
 	@Embedded
 	private TM tm;
-	
-	
+
 	private String studentImagePath;
+
 	@Transient
 	private MultipartFile studentImage;
 
@@ -81,7 +80,8 @@ public class Student implements Serializable {
 	@DateTimeFormat(pattern = "MM/dd/yyyy")
 	private Date dob;
 
-//	@Size(min = 10, max = 10, message = "{Size.addStudent.phoneNumber.validation}")
+	// @Size(min = 10, max = 10, message =
+	// "{Size.addStudent.phoneNumber.validation}")
 	private long phoneNumber;
 
 	private Entry entry;
@@ -90,19 +90,19 @@ public class Student implements Serializable {
 		return entry;
 	}
 
+	public void setEntry(Entry entry) {
+		this.entry = entry;
+	}
+
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
 	@Valid
 	private Address address;
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinTable(name = "Student_Course", joinColumns = { @JoinColumn(name = "Student_ID", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "Course_ID", nullable = false, updatable = false) })
-	public void setEntry(Entry entry) {
-		this.entry = entry;
-	}
-
-	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
-	@Valid
-	@JoinColumn
+	// @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+	// @Valid
+	// @JoinColumn
 	private List<Course> courses;
 
 	public List<Course> getCourses() {
