@@ -1,18 +1,23 @@
 package mum.waa.sms.controller;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.servlet.ServletContext;
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import mum.waa.sms.model.Course;
 import mum.waa.sms.model.Student;
@@ -27,6 +32,9 @@ import mum.waa.sms.service.StudentService;
 public class StudentController {
 
 	@Autowired
+	private ServletContext context;
+	
+	@Autowired
 	private StudentService studentservice;
 
 	@Autowired
@@ -38,7 +46,24 @@ public class StudentController {
 	}
 
 	@RequestMapping(value = { "/addstudentform" }, method = RequestMethod.POST)
-	public String addStudentPost(@ModelAttribute("newStudent") Student student) {
+	public String addStudentPost(@Valid @ModelAttribute("newStudent") Student student, BindingResult result) {
+		if (result.hasErrors()) {
+			return "addstudentform";
+		}
+		
+		MultipartFile studentImage = student.getStudentImage();
+		String rootDirectory = context.getRealPath("/");
+		if (studentImage != null && !studentImage.isEmpty()) {
+			try {
+				System.out.println("addimage try");
+				studentImage.transferTo(new File(rootDirectory
+						+ "\\resources\\images\\student_image\\" + student.getStudentId()
+						+ ".png"));
+				student.setStudentImagePath(rootDirectory+ "\\resources\\images\\student_image\\" + student.getStudentId()+ ".png");
+			} catch (Exception e) {
+				throw new RuntimeException("Student Image saving failed", e);
+			}
+		}
 		studentservice.saveStudent(student);
 		return "addstudentform";
 	}

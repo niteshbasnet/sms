@@ -11,100 +11,88 @@
 	src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
 <script type="text/javascript"
 	src="<spring:url value="/resource/js/ajax.js"/>"></script>
-	<script type="text/javascript">
+<script type="text/javascript">
 	
-	
-	
-	</script>
-	
-	
+</script>
+
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 	<div id="global">
-		<form:form modelAttribute="newStudent" method="POST"
-			action="addstudentform">
+  		<p>
+  		     <form:errors path="*" /> 
+        </p>	
+		<form:form modelAttribute="newStudent"  action="addstudentform"  enctype="multipart/form-data" method="POST">
 			<div id="student">
 				<fieldset>
 					<legend>Add a Student Information</legend>
 
-					<form:errors path="*" cssClass="alert alert-danger" element="div" />
+					<form:errors path="*" element="div" />
 
-					<div class="form-group">
+					<form:input path="studentImage" type="file" />
+
+					<div>
 						<label> Student ID: </label>
-						<div class="col-lg-10">
-							<form:input id="studentId" path="studentId" type="text"
-								class="form:input-large" />
-							<form:errors path="studentId" cssClass="text-danger" />
+						<div>
+							<form:input id="studentId" path="studentId" type="text" />
+							<form:errors path="studentId" />
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div>
 						<label> First Name: </label>
-						<div class="col-lg-10">
-							<form:input id="firstName" path="firstName" type="text"
-								class="form:input-large" />
-							<form:errors path="firstName" cssClass="text-danger" />
+						<div>
+							<form:input id="firstName" path="firstName" type="text" />
+							<form:errors path="firstName" />
 						</div>
 					</div>
 
-					<div class="form-group">
-						<label class="control-label col-lg-2 col-lg-2" for="lastName">
-							Last Name: </label>
-						<div class="col-lg-10">
-							<form:input id="lastName" path="lastName" type="text"
-								class="form:input-large" />
-							<form:errors path="lastName" cssClass="text-danger" />
+					<div>
+						<label for="lastName">Last Name: </label>
+						<div>
+							<form:input id="lastName" path="lastName" type="text" />
+							<form:errors path="lastName" />
 						</div>
 					</div>
 
-					<div class="form-group">
-						<label class="control-label col-lg-2 col-lg-2" for="gender">
-							Gender: </label>
-						<div class="col-lg-10">
-							<form:input id="gender" path="gender" type="text"
-								class="form:input-large" />
-							<form:errors path="gender" cssClass="text-danger" />
+					<div>
+						<label for="gender">Gender: </label>
+						<div>
+							<form:input id="gender" path="gender" type="text" />
+							<form:errors path="gender" />
 						</div>
 					</div>
 
-					<div class="form-group">
-						<label class="control-label col-lg-2 col-lg-2" for="dob">
-							Date of Birth: </label>
-						<div class="col-lg-10">
-							<form:input id="dob" path="dob" type="text"
-								class="form:input-large" />
-							<form:errors path="dob" cssClass="text-danger" />
+					<div>
+						<label for="dob">Date of Birth: </label>
+						<div>
+							<form:input id="dob" path="dob" type="text" />
+							<form:errors path="dob" />
 						</div>
 					</div>
 
-					<div class="form-group">
-						<label class="control-label col-lg-2 col-lg-2" for="email">
-							Email: </label>
-						<div class="col-lg-10">
-							<form:input id="email" path="email" type="text"
-								class="form:input-large" />
-							<form:errors path="email" cssClass="text-danger" />
+					<div>
+						<label for="email">Email: </label>
+						<div>
+							<form:input id="email" path="email" type="text" />
+							<form:errors path="email" />
 						</div>
 					</div>
 
-					<div class="form-group">
-						<label class="control-label col-lg-2 col-lg-2" for="phoneNumber">
-							Phone Number: </label>
-						<div class="col-lg-10">
-							<form:input id="phoneNumber" path="phoneNumber" type="text"
-								class="form:input-large" />
-							<form:errors path="phoneNumber" cssClass="text-danger" />
+					<div>
+						<label for="phoneNumber">Phone Number: </label>
+						<div>
+							<form:input id="phoneNumber" path="phoneNumber" type="text" />
+							<form:errors path="phoneNumber" />
 						</div>
 					</div>
 
-					<div class="form-group">
-						<label class="control-label col-lg-2 col-lg-2" for="entry">
-							Entry: </label>
-						<div class="col-lg-10">
-
+					<div>
+						<label for="entry">Entry: </label>
+						<div>
 							<form:select id="entry" path="entry">
 								<form:option value="NONE" label="--- Select ---" />
 								<form:option value="May" label="May" />
@@ -125,7 +113,7 @@
 
 					<p id="buttons">
 						<input id="btnnext" type="button" onClick="nextpage()"
-							value="Go to the next page" class="form:input-large" />
+							value="Go to the next page" />
 						<!-- <input id="reset" type="reset" tabindex="4"> <input
 						id="submit" type="submit" tabindex="5" value="Add Student"> -->
 					</p>
@@ -136,40 +124,36 @@
 				<fieldset>
 					<legend>Add Address</legend>
 
-					<form:errors path="*" cssClass="alert alert-danger" element="div" />
-					<div class="form-group">
-						<label> City: </label>
-						<div class="col-lg-10">
-							<form:input id="city" path="address.city" type="text"
-								class="form:input-large" />
-							<form:errors path="address.city" cssClass="text-danger" />
+					<form:errors path="*" element="div" />
+					<div>
+						<label>City: </label>
+						<div>
+							<form:input id="city" path="address.city" type="text" />
+							<form:errors path="address.city" />
 						</div>
 					</div>
 
-					<div class="form-group">
-						<label> Street: </label>
-						<div class="col-lg-10">
-							<form:input id="street" path="address.street" type="text"
-								class="form:input-large" />
-							<form:errors path="address.street" cssClass="text-danger" />
+					<div>
+						<label>Street: </label>
+						<div>
+							<form:input id="street" path="address.street" type="text" />
+							<form:errors path="address.street" />
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div>
 						<label> State: </label>
-						<div class="col-lg-10">
-							<form:input id="state" path="address.state" type="text"
-								class="form:input-large" />
-							<form:errors path="address.state" cssClass="text-danger" />
+						<div>
+							<form:input id="state" path="address.state" type="text" />
+							<form:errors path="address.state" />
 						</div>
 					</div>
 
-					<div class="form-group">
+					<div>
 						<label> Country: </label>
-						<div class="col-lg-10">
-							<form:input id="country" path="address.country" type="text"
-								class="form:input-large" />
-							<form:errors path="address.country" cssClass="text-danger" />
+						<div>
+							<form:input id="country" path="address.country" type="text" />
+							<form:errors path="address.country" />
 						</div>
 					</div>
 					<p id="buttons">

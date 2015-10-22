@@ -15,10 +15,18 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
+import javax.xml.bind.annotation.XmlTransient;
 
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.mysql.jdbc.Blob;
 
 /**
  * 
@@ -36,11 +44,18 @@ public class Student implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long Id;
-	private int studentId;
+	
+	@NotNull(message="Student ID shouldn't be null")
+	private Integer studentId;
+	
+	@Size(min=2,max=20)
 	private String firstName;
 	private String lastName;
 	private String gender;
 	private String email;
+	private String studentImagePath;
+	@Transient
+	private MultipartFile studentImage;
 
 	public String getEmail() {
 		return email;
@@ -69,10 +84,7 @@ public class Student implements Serializable {
 	private Address address;
 
 	@ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-	@JoinTable(name = "Student_Course", joinColumns = {
-			@JoinColumn(name = "Student_ID", nullable = false, updatable = false) }, inverseJoinColumns = {
-					@JoinColumn(name = "Course_ID", nullable = false, updatable = false) })
-
+	@JoinTable(name = "Student_Course", joinColumns = { @JoinColumn(name = "Student_ID", nullable = false, updatable = false) }, inverseJoinColumns = { @JoinColumn(name = "Course_ID", nullable = false, updatable = false) })
 	private List<Course> courses;
 
 	public List<Course> getCourses() {
@@ -139,12 +151,28 @@ public class Student implements Serializable {
 		this.address = address;
 	}
 
-	public int getStudentId() {
+	public Integer getStudentId() {
 		return studentId;
 	}
 
-	public void setStudentId(int studentId) {
+	public void setStudentId(Integer studentId) {
 		this.studentId = studentId;
+	}
+
+	public String getStudentImagePath() {
+		return studentImagePath;
+	}
+
+	public void setStudentImagePath(String studentImagePath) {
+		this.studentImagePath = studentImagePath;
+	}
+
+	public MultipartFile getStudentImage() {
+		return studentImage;
+	}
+
+	public void setStudentImage(MultipartFile studentImage) {
+		this.studentImage = studentImage;
 	}
 
 }
