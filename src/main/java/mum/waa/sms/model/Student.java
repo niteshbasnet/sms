@@ -5,6 +5,7 @@ import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
@@ -13,11 +14,16 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
@@ -28,18 +34,34 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Table(name = "student")
 public class Student implements Serializable {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 5400162374980514311L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long Id;
+
+
+	private Integer studentId;
+	
+
 	private String firstName;
+	
+
 	private String lastName;
+	
+
 	private String gender;
+
 	private String email;
+	@Embedded
+	private TM tm;
+
+	public TM getTm() {
+		return tm;
+	}
+
+	public void setTm(TM tm) {
+		this.tm = tm;
+	}
 
 	public String getEmail() {
 		return email;
@@ -52,15 +74,14 @@ public class Student implements Serializable {
 	@Past
 	@DateTimeFormat(pattern = "MM/dd/yyyy")
 	private Date dob;
+
+//	@Size(min = 10, max = 10, message = "{Size.addStudent.phoneNumber.validation}")
 	private long phoneNumber;
+
 	private String entry;
 
 	public String getEntry() {
 		return entry;
-	}
-
-	public void setEntry(String entry) {
-		this.entry = entry;
 	}
 
 	@OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
@@ -72,6 +93,13 @@ public class Student implements Serializable {
 			@JoinColumn(name = "Student_ID", nullable = false, updatable = false) }, inverseJoinColumns = {
 					@JoinColumn(name = "Course_ID", nullable = false, updatable = false) })
 
+	public void setEntry(String entry) {
+		this.entry = entry;
+	}
+
+	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
+	@Valid
+	@JoinColumn
 	private List<Course> courses;
 
 	public List<Course> getCourses() {
@@ -136,6 +164,14 @@ public class Student implements Serializable {
 
 	public void setAddress(Address address) {
 		this.address = address;
+	}
+
+	public Integer getStudentId() {
+		return studentId;
+	}
+
+	public void setStudentId(Integer studentId) {
+		this.studentId = studentId;
 	}
 
 }

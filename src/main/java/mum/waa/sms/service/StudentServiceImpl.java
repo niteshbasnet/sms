@@ -32,4 +32,15 @@ public class StudentServiceImpl implements StudentService {
 		return list;
 	}
 
+	public Student getStudentById(int studentId) {
+
+		return studentrepository.findByName(studentId);
+	}
+
+	public void updateStudent(Student student) {
+		studentrepository.updateStudent(student.getStudentId(), student.getFirstName(), student.getLastName(),
+				student.getGender(), student.getEmail(), student.getDob(), student.getPhoneNumber(),
+				student.getEntry());
+	}
+
 }

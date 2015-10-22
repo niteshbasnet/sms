@@ -5,7 +5,7 @@ $(document)
 							.change(
 									function() {
 										var dropdownValue = $('#entry').val();
-										// alert(dropdownValue);
+										alert(dropdownValue);
 										$
 												.ajax({
 													url : '/StudentMGMT/course',
@@ -15,8 +15,7 @@ $(document)
 															+ dropdownValue,
 													success : function(
 															responseList) {
-														// alert("this is
-														// object");
+														alert("this is object");
 														var $div = $('#courseSection');
 														// $div.append("Course");
 														$
@@ -26,10 +25,16 @@ $(document)
 																				index,
 																				value) {
 																			$div
-																					.append('<input type="text" name="courses.courseName" id='
+																					.append('<input type="checkbox" name="courses[' + index + '].courseName" id='
 																							+ value
 																							+ '/>'
 																							+ value);
+																		/*	$div
+																			.append('<form:checkbox path="courses[' + index + '].courseName" value="'
+																					+ value
+																					+ '"/>'
+																					+ value);*/
+																			
 																		});
 													},
 													error : function() {

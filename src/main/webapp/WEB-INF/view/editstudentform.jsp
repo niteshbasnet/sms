@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -8,11 +10,13 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<security:authorize access="isAuthenticated()">
-		Welcome <security:authentication property="username" />
-	</security:authorize>
-	<a href="<spring:url  value="/doLogout" />"
-		class="btn btn-danger btn-mini pull-right">Logout</a>
-	<h1>This is dashboard</h1>
+	<h1>EDIT STUDENT FORM</h1>
+	<form:form modelAttribute="updatedStudent" method="POST"
+		action="editstudentform">
+
+		<p id="buttons">
+			<input id="submit" type="submit" value="Edit Student">
+		</p>
+	</form:form>
 </body>
 </html>

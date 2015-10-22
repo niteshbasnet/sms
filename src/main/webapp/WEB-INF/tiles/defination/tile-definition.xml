@@ -22,35 +22,45 @@
 	<definition name="dashboard" extends="baseLayout">
 		<put-attribute name="title" value="Dashboard" />
 		<put-attribute name="heading" value="Dashboard" />
-		<put-attribute name="navigation" value="/WEB-INF/tiles/template/navigation.jsp" />
+		<put-attribute name="navigation"
+			value="/WEB-INF/tiles/template/navigation.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/dashboard.jsp" />
 	</definition>
 
 	<definition name="addstudentform" extends="baseLayout">
 		<put-attribute name="title" value="Add Student" />
 		<put-attribute name="heading" value="Add Student" />
-		<put-attribute name="navigation" value="/WEB-INF/tiles/template/navigation.jsp" />
+		<put-attribute name="navigation"
+			value="/WEB-INF/tiles/template/navigation.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/addstudentform.jsp" />
 	</definition>
-	
+
 	<definition name="addcourseform" extends="baseLayout">
 		<put-attribute name="title" value="Add Course" />
 		<put-attribute name="heading" value="Add Course" />
-		<put-attribute name="navigation" value="/WEB-INF/tiles/template/navigation.jsp" />
+		<put-attribute name="navigation"
+			value="/WEB-INF/tiles/template/navigation.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/addcourseform.jsp" />
 	</definition>
 
-	<definition name="addTMrequirementform" extends="baseLayout">
+	<!-- <definition name="tmInfo" extends="baseLayout"> <put-attribute name="title" 
+		value="Add TM Requirement" /> <put-attribute name="heading" value="Add TM 
+		Requirement" /> <put-attribute name="navigation" value="/WEB-INF/tiles/template/navigation.jsp" 
+		/> <put-attribute name="body" value="/WEB-INF/view/tmInfo.jsp" /> </definition> -->
+	<definition name="editTmInfo" extends="baseLayout">
 		<put-attribute name="title" value="Add TM Requirement" />
 		<put-attribute name="heading" value="Add TM Requirement" />
-		<put-attribute name="navigation" value="/WEB-INF/tiles/template/navigation.jsp" />
-		<put-attribute name="body" value="/WEB-INF/view/addTMrequirementform.jsp" />
+		<put-attribute name="navigation"
+			value="/WEB-INF/tiles/template/navigation.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/editTmInfo.jsp" />
+
 	</definition>
-	
+
 	<definition name="user-profile" extends="baseLayout">
 		<put-attribute name="title" value="Add TM Requirement" />
 		<put-attribute name="heading" value="Add TM Requirement" />
-		<put-attribute name="navigation" value="/WEB-INF/tiles/template/navigation.jsp" />
+		<put-attribute name="navigation"
+			value="/WEB-INF/tiles/template/navigation.jsp" />
 		<put-attribute name="body" value="/WEB-INF/view/user-profile.jsp" />
 	</definition>
 
@@ -65,11 +75,46 @@
 		<put-attribute name="heading" value="Forbidden" />
 		<put-attribute name="body" value="/WEB-INF/view/error.jsp" />
 	</definition>
-	
+
 	<definition name="error-forbidden" extends="baseLayout">
 		<put-attribute name="title" value="Forbidden" />
 		<put-attribute name="heading" value="Forbidden" />
 		<put-attribute name="body" value="/WEB-INF/view/error-forbidden.jsp" />
 	</definition>
-	
+	<definition name="addcourseform" extends="baseLayout">
+		<put-attribute name="title" value="Add Course" />
+		<put-attribute name="heading" value="Add Course" />
+		<put-attribute name="navigation"
+			value="/WEB-INF/tiles/template/navigation.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/addcourseform.jsp" />
+	</definition>
+	<definition name="editstudent" extends="baseLayout">
+		<put-attribute name="title" value="Edit Student" />
+		<put-attribute name="heading" value="Edit Student" />
+		<put-attribute name="navigation"
+			value="/WEB-INF/tiles/template/navigation.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/editstudent.jsp" />
+	</definition>
+	<definition name="updatestudentform" extends="baseLayout">
+		<put-attribute name="title" value="Update Student" />
+		<put-attribute name="heading" value="Update Student" />
+		<put-attribute name="navigation"
+			value="/WEB-INF/tiles/template/navigation.jsp" />
+		<put-attribute name="body"
+			value="/WEB-INF/view/updatestudentform.jsp" />
+	</definition>
+	<definition name="editstudentform" extends="baseLayout">
+		<put-attribute name="title" value="Edit Student" />
+		<put-attribute name="heading" value="Edit Student" />
+		<put-attribute name="navigation"
+			value="/WEB-INF/tiles/template/navigation.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/editstudentform.jsp" />
+	</definition>
+	<definition name="showMessage" extends="baseLayout">
+		<put-attribute name="title" value="Show Message" />
+		<put-attribute name="heading" value="Show Message" />
+		<put-attribute name="navigation"
+			value="/WEB-INF/tiles/template/navigation.jsp" />
+		<put-attribute name="body" value="/WEB-INF/view/showMessage.jsp" />
+	</definition>
 </tiles-definitions>

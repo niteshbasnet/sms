@@ -3,32 +3,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
-
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
-<script type="text/javascript"
-	src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
-<script type="text/javascript"
-	src="<spring:url value="/resource/js/ajax.js"/>"></script>
-	<script type="text/javascript">
-	
-	
-	
-	</script>
-	
-	
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 </head>
 <body>
 	<div id="global">
-		<form:form modelAttribute="newStudent" method="POST"
-			action="addstudentform">
+		<form:form modelAttribute="searchedStudent" method="POST"
+			action="updatestudentform">
 			<div id="student">
 				<fieldset>
-					<legend>Add a Student Information</legend>
+					<legend>Update a Student Information</legend>
 
 					<form:errors path="*" cssClass="alert alert-danger" element="div" />
 
@@ -134,7 +121,7 @@
 
 			<div id="address">
 				<fieldset>
-					<legend>Add Address</legend>
+					<legend>Update Address</legend>
 
 					<form:errors path="*" cssClass="alert alert-danger" element="div" />
 					<div class="form-group">
@@ -184,7 +171,7 @@
 
 			<div id="course">
 				<fieldset>
-					<legend>Add Course</legend>
+					<legend>Update Course</legend>
 					<div id="courseSection"></div>
 					<%-- 	<p>
 						<label for="course">Course: </label>
@@ -196,9 +183,10 @@
 				</fieldset>
 			</div>
 			<p id="buttons">
-				<input id="submit" type="submit" value="Add Student">
+				<input id="submit" type="submit" value="Update Student">
 			</p>
 		</form:form>
 	</div>
+
 </body>
 </html>
