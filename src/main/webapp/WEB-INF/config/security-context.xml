@@ -26,6 +26,10 @@
 			access="hasRole('ROLE_ADMIN')" />
 		<security:intercept-url pattern="/update**"
 			access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/course**"
+			access="hasRole('ROLE_ADMIN')" />
+		<security:intercept-url pattern="/results**"
+			access="hasRole('ROLE_ADMIN')" />
 		<security:intercept-url pattern="/resource/**"
 			access="permitAll" />
 		<security:intercept-url pattern="/login"

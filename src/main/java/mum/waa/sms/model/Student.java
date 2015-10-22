@@ -18,8 +18,12 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.Valid;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
+import javax.validation.constraints.Size;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
 import org.springframework.format.annotation.DateTimeFormat;
 
 /**
@@ -30,18 +34,23 @@ import org.springframework.format.annotation.DateTimeFormat;
 @Entity
 @Table(name = "student")
 public class Student implements Serializable {
-
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 5400162374980514311L;
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long Id;
-	private int studentId;
+
+
+	private Integer studentId;
+	
+
 	private String firstName;
+	
+
 	private String lastName;
+	
+
 	private String gender;
+
 	private String email;
 	@Embedded
 	private TM tm;
@@ -65,7 +74,10 @@ public class Student implements Serializable {
 	@Past
 	@DateTimeFormat(pattern = "MM/dd/yyyy")
 	private Date dob;
+
+//	@Size(min = 10, max = 10, message = "{Size.addStudent.phoneNumber.validation}")
 	private long phoneNumber;
+
 	private String entry;
 
 	public String getEntry() {
@@ -154,11 +166,11 @@ public class Student implements Serializable {
 		this.address = address;
 	}
 
-	public int getStudentId() {
+	public Integer getStudentId() {
 		return studentId;
 	}
 
-	public void setStudentId(int studentId) {
+	public void setStudentId(Integer studentId) {
 		this.studentId = studentId;
 	}
 
